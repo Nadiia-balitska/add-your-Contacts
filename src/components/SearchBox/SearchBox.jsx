@@ -1,7 +1,16 @@
-export const SearchBox = () => {
+import s from "./SearchBox.module.css";
+export const SearchBox = ({ value, onSearchChange }) => {
   return (
     <div>
-      <h2>Find contacts by name</h2>
+      <label className={s.label}>
+        Find contacts by name
+        <input
+          value={value}
+          type="text"
+          onChange={(e) => onSearchChange(e.target.value)}
+          className={s.input}
+        />
+      </label>
     </div>
   );
 };

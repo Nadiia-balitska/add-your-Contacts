@@ -1,0 +1,33 @@
+.item {
+  display: flex;
+  gap: 30px;
+  border: 2px solid black;
+  border-radius: 8px;
+  max-height: 70px;
+  display: flex;
+  width: 230px;
+  height: 150px;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.btn {
+  /* height: 30px;
+  width: 60px; */
+  display: block;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+  border: 1px solid black;
+}
+.text {
+  padding-left: 10px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
