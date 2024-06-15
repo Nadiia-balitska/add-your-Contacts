@@ -1,8 +1,8 @@
 import "./App.css";
-// import { ContactForm } from "./components/ContactForm/ContactForm";
+import { ContactForm } from "./components/ContactForm/ContactForm";
 import { SearchBox } from "./components/SearchBox/SearchBox";
 import { ContactList } from "./components/ContactList/ContactList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const person = [
@@ -11,7 +11,18 @@ function App() {
     { id: "id-3", name: "Eden Clements", number: "645-17-79" },
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ];
-  const [state, setState] = useState(person);
+  const [state, setState] = useState(() => {
+    const savedState = window.localStorage.getItem("state");
+    if (savedState !== null) {
+      return JSON.parse(savedState);
+    }
+    return person;
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("state", JSON.stringify(state));
+  }, [state]);
+
   const [searchValue, setSearchValue] = useState("");
 
   const handleDelete = (id) => {
@@ -22,6 +33,10 @@ function App() {
     setSearchValue(value);
   };
 
+  const handleAdd = (newOne) => {
+    setState((prev) => [...prev, newOne]);
+  };
+
   const filteredContacts = state.filter((contact) =>
     contact.name.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -29,7 +44,7 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      {/* <ContactForm /> */}
+      <ContactForm onAdd={handleAdd} />
       <SearchBox value={searchValue} onSearchChange={handleSearchChange} />
       <ContactList items={filteredContacts} handleDelete={handleDelete} />
     </div>
