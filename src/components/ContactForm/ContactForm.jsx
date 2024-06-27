@@ -3,20 +3,24 @@ import { contactFormSchema } from "../schemas/validatorUser";
 import { useId } from "react";
 import s from ".//ContactForm.module.css";
 import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import { addContact, selectContacts } from "../../redux/contactsSlice";
 
-export const ContactForm = ({ onAdd }) => {
+export const ContactForm = () => {
   const initialValues = {
     name: "",
     number: "",
   };
+
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const nameFieldId = useId();
   const numberFieldId = useId();
 
   const handleSubmit = (values, action) => {
     const contactWithId = { id: nanoid(), ...values };
-    console.log(values);
-    onAdd(contactWithId);
+    dispatch(addContact(contactWithId));
     action.resetForm();
   };
 
@@ -25,12 +29,12 @@ export const ContactForm = ({ onAdd }) => {
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={contactFormSchema}
+        validationSchema={contactFormSchema(contacts)}
       >
         <Form className={s.form}>
           <div className={s.wrap_inp}>
             <label className={s.label} htmlFor={nameFieldId}>
-              Name{" "}
+              Name
             </label>
             <Field
               className={s.input}
@@ -42,7 +46,7 @@ export const ContactForm = ({ onAdd }) => {
           </div>
           <div>
             <label className={s.label} htmlFor={numberFieldId}>
-              Number{" "}
+              Number
             </label>
             <Field
               className={s.input}
