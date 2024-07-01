@@ -2,9 +2,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { contactFormSchema } from "../schemas/validatorUser";
 import { useId } from "react";
 import s from ".//ContactForm.module.css";
-import { nanoid } from "nanoid";
-import { useDispatch, useSelector } from "react-redux";
-import { addContact, selectContacts } from "../../redux/contactsSlice";
+
+import { useDispatch } from "react-redux";
+import { addContactThunk } from "../../redux/contactsOps";
 
 export const ContactForm = () => {
   const initialValues = {
@@ -13,23 +13,26 @@ export const ContactForm = () => {
   };
 
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
 
   const nameFieldId = useId();
   const numberFieldId = useId();
 
   const handleSubmit = (values, action) => {
-    const contactWithId = { id: nanoid(), ...values };
-    dispatch(addContact(contactWithId));
+    const contact = addContactThunk({
+      name: values.name,
+      number: values.number,
+    });
+    dispatch(contact);
     action.resetForm();
   };
 
   return (
     <div className="formik_wrap">
       <Formik
+        enableReinitialize
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={contactFormSchema(contacts)}
+        validationSchema={contactFormSchema}
       >
         <Form className={s.form}>
           <div className={s.wrap_inp}>
