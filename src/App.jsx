@@ -2,14 +2,17 @@ import "./App.css";
 import { ContactForm } from "./components/ContactForm/ContactForm";
 import { SearchBox } from "./components/SearchBox/SearchBox";
 import { ContactList } from "./components/ContactList/ContactList";
-// import { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   addContact,
-//   deleteContact,
-//   selectContacts,
-// } from "./redux/contactsSlice";
-// import { changeFilter, selectNameFilter } from "./redux/filtersSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectFilteredName,
+  selectContacts,
+  selectLoading,
+  selectError,
+} from "./redux/contactsSlice";
+import { fetchContactsThunk } from "./redux/contactsOps";
+// import { selectNameFilter } from "./redux/filtersSlice";
+import { Loader } from "./components/Loader/Loader";
 
 // const dispatch = useDispatch();
 // const contacts = useSelector(selectContacts);
@@ -55,12 +58,28 @@ import { ContactList } from "./components/ContactList/ContactList";
 //   contact.name.toLowerCase().includes(searchValue.toLowerCase())
 // );
 function App() {
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilteredName);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchContactsThunk());
+  }, [dispatch]);
+
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox />
-      <ContactList />
+      {loading && <Loader />}
+      {contacts.length > 0 && !error ? (
+        <ContactList filteredContacts={filter} />
+      ) : (
+        <span> OOps, No searched contact/s :( </span>
+      )}
+      {error && <p> Something went wrong, type of error: {error}</p>}
     </div>
   );
 }

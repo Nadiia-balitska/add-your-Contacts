@@ -1,28 +1,20 @@
-import { useSelector } from "react-redux";
 import { Contact } from "../Contact/Contact";
 import s from "./ContactList.module.css";
-import { selectContacts } from "../../redux/contactsSlice";
-import { selectNameFilter } from "../../redux/filtersSlice";
-// import { useMemo } from "react";
+// import { selectContacts } from "../../redux/contactsSlice";
+// import { selectNameFilter } from "../../redux/filtersSlice";
+// import { useSelector } from "react-redux";
+// import { selectFilteredName } from "../../redux/contactsSlice.js";
+export const ContactList = ({ filteredContacts }) => {
+  // const contacts = useSelector(selectContacts);
+  // const filter = useSelector(selectNameFilter);
 
-export const ContactList = () => {
-  const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectNameFilter);
-
-  const searchFilteredContacts = () => {
-    return contacts.filter((contact) =>
-      contact?.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
-
-  const filteredContacts = searchFilteredContacts();
-
-  // const filteredContacts = useMemo(() => {
-  //   const lowercasedFilter = filter.toLowerCase();
+  // const searchFilteredContacts = () => {
   //   return contacts.filter((contact) =>
-  //     contact?.name.toLowerCase().includes(lowercasedFilter)
+  //     contact?.name.toLowerCase().includes(filter.toLowerCase())
   //   );
-  // }, [contacts, filter]);
+  // };
+
+  // const filteredContacts = searchFilteredContacts();
 
   return (
     <ul className={s.list}>
