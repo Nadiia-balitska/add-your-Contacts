@@ -3,11 +3,11 @@ import {
   clearToken,
   goitApi,
   setToken,
-  authorization,
+  // authorization,
 } from "../../config/goitApi";
 
 export const registerThunk = createAsyncThunk(
-  "auth/register",
+  "register",
   async (credentials, thunkApi) => {
     try {
       const { data } = await goitApi.post("users/signup", credentials);
@@ -20,7 +20,7 @@ export const registerThunk = createAsyncThunk(
 );
 
 export const loginThunk = createAsyncThunk(
-  "auth/login",
+  "login",
   async (credentials, thunkApi) => {
     try {
       const { data } = await goitApi.post("users/login", credentials);
@@ -32,33 +32,39 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk(
-  "auth/logout",
-  async (_, thunkApi) => {
-    try {
-      await goitApi.post("users/logout");
-      clearToken();
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
+export const logoutThunk = createAsyncThunk("logout", async (_, thunkApi) => {
+  try {
+    await goitApi.post("users/logout");
+    clearToken();
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
   }
-);
+});
 
 export const refreshUserThunk = createAsyncThunk(
-  "auth/refresh",
+  "srefresh",
   async (_, thunkApi) => {
-    try {
-      await goitApi.get("users/current");
-      authorization();
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return thunkApi.rejectWithValue("No token found");
+    }
 
-      // const { data } = await goitApi.get("users/current", {
+    try {
+      setToken(token);
+      const { data } = await goitApi.get("users/current");
+      return data;
+      // await goitApi.get("users/current");
+
+      //  {
       //   headers: {
       //     Authorization: `Bearer ${data.token}`,
       //   },
-      // });
 
+      // const { data } = await goitApi.get("users/current");
+      // authorization();
       // return data;
     } catch (error) {
+      clearToken();
       return thunkApi.rejectWithValue(error.message);
     }
   }
