@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { selectIsLoggedIn, selectUser } from "../redux/auth/slice";
-import { logoutThunk } from "../redux/auth/operations";
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/slice";
+import { logoutThunk } from "../../redux/auth/operations";
 
 export const Header = () => {
   const dispatch = useDispatch();
