@@ -17,8 +17,8 @@ export const clearToken = () => {
 //   return headers;
 // };
 
-export const authorization = (token) => {
-  return {
-    Authorization: `Bearer ${token}`,
-  };
-};
+// export const authorization = (token) => {
+//   return {
+//     Authorization: `Bearer ${token}`,
+//   };
+// };

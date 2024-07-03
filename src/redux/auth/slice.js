@@ -2,18 +2,20 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   loginThunk,
   logoutThunk,
-  refreshUserThunk,
+  refreshThunk,
   registerThunk,
 } from "./operations";
 
 const initialState = {
   user: {
-    name: null,
-    email: null,
+    name: "",
+    email: "",
   },
-  token: null,
+  token: "",
   isLoggedIn: false,
-  isRefreshing: false,
+  isLoading: false,
+  isError: false,
+  isRefresh: false,
 };
 
 const slice = createSlice({
@@ -23,6 +25,7 @@ const slice = createSlice({
     selectIsLoggedIn: (state) => state.isLoggedIn,
     selectIsError: (state) => state.isError,
     selectUser: (state) => state.user,
+    selectIsRefresh: (state) => state.isRefresh,
   },
   extraReducers: (builder) => {
     builder
@@ -41,14 +44,21 @@ const slice = createSlice({
       .addCase(logoutThunk.fulfilled, () => {
         return initialState;
       })
-      .addCase(refreshUserThunk.fulfilled, (state, action) => {
-        state.user.name = action.payload.user.name;
-        state.user.email = action.payload.user.email;
-        state.token = action.payload.token;
+      .addCase(refreshThunk.pending, (state) => {
+        state.isRefresh = true;
+      })
+      .addCase(refreshThunk.rejected, (state) => {
+        state.isRefresh = false;
+      })
+      .addCase(refreshThunk.fulfilled, (state, action) => {
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
         state.isLoggedIn = true;
+        state.isRefresh = false;
       });
   },
 });
 
 export const authReducer = slice.reducer;
-export const { selectIsLoggedIn, selectIsError, selectUser } = slice.selectors;
+export const { selectIsLoggedIn, selectIsError, selectUser, selectIsRefresh } =
+  slice.selectors;

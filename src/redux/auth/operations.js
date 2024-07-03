@@ -41,31 +41,46 @@ export const logoutThunk = createAsyncThunk("logout", async (_, thunkApi) => {
   }
 });
 
-export const refreshUserThunk = createAsyncThunk(
-  "srefresh",
-  async (_, thunkApi) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      return thunkApi.rejectWithValue("No token found");
-    }
+export const refreshThunk = createAsyncThunk("refresh", async (_, thunkApi) => {
+  const savedToken = thunkApi.getState().auth.token;
 
-    try {
-      setToken(token);
-      const { data } = await goitApi.get("users/current");
-      return data;
-      // await goitApi.get("users/current");
-
-      //  {
-      //   headers: {
-      //     Authorization: `Bearer ${data.token}`,
-      //   },
-
-      // const { data } = await goitApi.get("users/current");
-      // authorization();
-      // return data;
-    } catch (error) {
-      clearToken();
-      return thunkApi.rejectWithValue(error.message);
-    }
+  if (!savedToken) {
+    return thunkApi.rejectWithValue("No token exist!");
   }
-);
+  try {
+    setToken(savedToken);
+    const { data } = await goitApi.get("users/current");
+    return data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
+  }
+});
+
+// export const refreshUserThunk = createAsyncThunk(
+//   "srefresh",
+//   async (_, thunkApi) => {
+//     const token = localStorage.getItem("token");
+//     if (!token) {
+//       return thunkApi.rejectWithValue("No token found");
+//     }
+
+//     try {
+//       setToken(token);
+//       const { data } = await goitApi.get("users/current");
+//       return data;
+//       // await goitApi.get("users/current");
+
+//       //  {
+//       //   headers: {
+//       //     Authorization: `Bearer ${data.token}`,
+//       //   },
+
+//       // const { data } = await goitApi.get("users/current");
+//       // authorization();
+//       // return data;
+//     } catch (error) {
+//       clearToken();
+//       return thunkApi.rejectWithValue(error.message);
+//     }
+//   }
+// );
