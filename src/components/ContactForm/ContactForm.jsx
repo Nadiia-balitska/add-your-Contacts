@@ -61,7 +61,7 @@ export const ContactForm = () => {
             ></label>
             <Field
               // className={s.input}
-              className="input mb-3 max-w-96 input-bordered flex items-center gap-2"
+              className="input mb-3 w-96 input-bordered flex items-center gap-2"
               type="text"
               name="number"
               placeholder="Number"

@@ -25,16 +25,17 @@ export const ContactsApp = () => {
 
   return (
     <div>
-      <h1>Phonebook</h1>
+      {/* <h1>Phonebook</h1> */}
       <ContactForm />
       <SearchBox />
       {loading && <Loader />}
 
-      {contacts?.length > 0 && !error ? (
-        <ContactList />
-      ) : (
-        <span> OOps, No searched contact/s :( </span>
-      )}
+      {
+        contacts?.length > 0 && !error && <ContactList />
+        //  : (
+        //   <span> OOps, No searched contact/s :( </span>
+        // )
+      }
       {error && <p> Something went wrong, type of error: {error}</p>}
     </div>
   );
