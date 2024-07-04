@@ -14,7 +14,7 @@ export const Home = () => {
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
           <p className="mb-5">Here are yours contacts list...</p>
-          <Link to="/contacts" className="btn btn-primary">
+          <Link to="/contacts" className="btn btn-outline btn-accent">
             Get Started
           </Link>
         </div>

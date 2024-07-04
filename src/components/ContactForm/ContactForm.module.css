@@ -13,8 +13,9 @@
 }
 .form {
   padding: 20px;
-  width: 350px;
-  border: 2px solid black;
+  width: 420px;
+  border: 1px solid darkcyan;
+  border-radius: 6px;
 }
 
 .label {

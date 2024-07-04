@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Layout } from "./components/Layout/Layout";
-import { Contact } from "./components/Contact/Contact";
+
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/slice";
 import { PublicRoute } from "./routes/PublicRoute";
 import { PrivateRoute } from "./routes/PrivateRoute";
+import { Contacts } from "./pages/Contacts";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ export const App = () => {
         }
       >
         <Route index element={<Home />} />
-        <Route path="contacts" element={<Contact />} />
+        <Route path="contacts" element={<Contacts />} />
       </Route>
 
       <Route

@@ -7,13 +7,12 @@ export const SearchBox = () => {
 
   return (
     <div>
-      <label className={s.label}>
-        Find contacts by name
+      <label className="input  mt-10 input-bordered max-w-96 flex items-center gap-2">
         <input
-          // value={value}
           type="text"
           onChange={(e) => dispatch(changeFilter(e.target.value))}
           className={s.input}
+          placeholder="Find contacts by name"
         />
       </label>
     </div>

@@ -8,23 +8,31 @@ export const Header = () => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <header className="px-8 py-4 font-bold text-white bg-slate-800 flex justify-between items-center  ">
-      <h2>Auth</h2>
-      <h2>{user.email}</h2>
+    <header className="navbar bg-base-100 flex justify-between items-center  ">
+      {/* <h2>Auth</h2> */}
+      <h2 className="btn btn-ghost text-xl">{user.email}</h2>
       <ul className="flex gap-5 items-center">
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink className="btn btn-ghost text-xl" to="/">
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/contacts">Contacts</NavLink>
+          <NavLink to="/contacts" className="btn btn-ghost text-xl">
+            Contacts
+          </NavLink>
         </li>
         {!isLoggedIn && (
           <>
             <li>
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/login" className="btn btn-ghost text-xl">
+                Login
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/register">Register</NavLink>
+              <NavLink to="/register" className="btn btn-ghost text-xl">
+                Register
+              </NavLink>
             </li>
           </>
         )}
@@ -32,7 +40,7 @@ export const Header = () => {
           <li>
             <button
               onClick={() => dispatch(logoutThunk())}
-              className="btn btn-primary"
+              className="btn btn-outline btn-accent"
             >
               Logout
             </button>

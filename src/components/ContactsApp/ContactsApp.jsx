@@ -1,16 +1,16 @@
-import { ContactForm } from "./components/ContactForm/ContactForm";
-import { SearchBox } from "./components/SearchBox/SearchBox";
-import { ContactList } from "./components/ContactList/ContactList";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { SearchBox } from "../SearchBox/SearchBox.jsx";
+import { ContactList } from "../ContactList/ContactList.jsx";
 import {
-  // selectFilteredName,
   selectContacts,
-  selectLoading,
   selectError,
-} from "../../redux/contacts/contactsSlice";
+  selectLoading,
+} from "../../redux/contacts/contactsSlice.js";
 import { fetchContactsThunk } from "../../redux/contacts/contactsOps.js";
-import { Loader } from "./components/Loader/Loader";
+import { ContactForm } from "../ContactForm/ContactForm.jsx";
+import { Loader } from "../Loader/Loader.jsx";
 
 export const ContactsApp = () => {
   const dispatch = useDispatch();

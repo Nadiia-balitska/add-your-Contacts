@@ -1,7 +1,7 @@
 .item {
   display: flex;
   gap: 30px;
-  border: 2px solid black;
+  border: 2px solid red;
   border-radius: 8px;
   max-height: 70px;
   display: flex;

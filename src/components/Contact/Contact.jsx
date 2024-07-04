@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteContactThunk } from "../../redux/contacts/contactsOps";
-import s from "./Contact.module.css";
+// import s from "./Contact.module.css";
 
 export const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
@@ -9,12 +9,12 @@ export const Contact = ({ name, number, id }) => {
   };
 
   return (
-    <div className={s.item}>
-      <div className={s.wrapper}>
-        <p className={s.text}>{name}</p>
-        <p className={s.text}>{number}</p>
+    <div className="card bg-base-100 w-56 shadow-xl">
+      <div className="card-body">
+        <p className="card-title">{name}</p>
+        <p>{number}</p>
       </div>
-      <button className={s.btn} onClick={handleDelete}>
+      <button className="btn btn-outline btn-accent " onClick={handleDelete}>
         Delete
       </button>
     </div>
