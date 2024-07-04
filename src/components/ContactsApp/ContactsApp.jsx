@@ -8,7 +8,7 @@ import {
   selectError,
   selectLoading,
 } from "../../redux/contacts/contactsSlice.js";
-import { fetchContactsThunk } from "../../redux/contacts/contactsOps.js";
+import { fetchContactsThunk } from "../../redux/contacts/operations.js";
 import { ContactForm } from "../ContactForm/ContactForm.jsx";
 import { Loader } from "../Loader/Loader.jsx";
 

@@ -3,7 +3,7 @@ import {
   fetchContactsThunk,
   addContactThunk,
   deleteContactThunk,
-} from "./contactsOps";
+} from "./operations";
 import { selectNameFilter } from "../filters/filtersSlice";
 import { logoutThunk } from "../auth/operations";
 

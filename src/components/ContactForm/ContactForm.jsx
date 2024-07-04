@@ -4,7 +4,7 @@ import { useId } from "react";
 import s from "./ContactForm.module.css";
 
 import { useDispatch } from "react-redux";
-import { addContactThunk } from "../../redux/contacts/contactsOps";
+import { addContactThunk } from "../../redux/contacts/operations";
 
 const initialValues = {
   name: "",
