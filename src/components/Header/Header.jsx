@@ -8,7 +8,7 @@ export const Header = () => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <header className="navbar bg-base-100 flex justify-between items-center  ">
+    <header className="navbar bg-gray-500 text-neutral-content flex justify-between items-center  ">
       {/* <h2>Auth</h2> */}
       <h2 className="btn btn-ghost text-xl">{user.email}</h2>
       <ul className="flex gap-5 items-center">
