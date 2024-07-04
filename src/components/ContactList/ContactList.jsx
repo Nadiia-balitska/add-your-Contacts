@@ -1,12 +1,15 @@
+import { useSelector } from "react-redux";
 import { Contact } from "../Contact/Contact";
 import s from "./ContactList.module.css";
+import { selectFilteredName } from "../../redux/contacts/contactsSlice";
 // import { selectContacts } from "../../redux/contactsSlice";
 // import { selectNameFilter } from "../../redux/filtersSlice";
 // import { useSelector } from "react-redux";
 // import { selectFilteredName } from "../../redux/contactsSlice.js";
-export const ContactList = ({ filteredContacts }) => {
+export const ContactList = () => {
   // const contacts = useSelector(selectContacts);
   // const filter = useSelector(selectNameFilter);
+  const filter = useSelector(selectFilteredName);
 
   // const searchFilteredContacts = () => {
   //   return contacts.filter((contact) =>
@@ -18,7 +21,7 @@ export const ContactList = ({ filteredContacts }) => {
 
   return (
     <ul className={s.list}>
-      {filteredContacts.map((item) => (
+      {filter.map((item) => (
         <li key={item.id} className={s.item}>
           <Contact id={item?.id} {...item} />
         </li>

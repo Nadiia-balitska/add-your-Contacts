@@ -14,16 +14,11 @@ export const Login = () => {
     password: "",
   };
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero  bg-gray-400 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa,
-            totam optio. Doloribus consequatur labore atque, quas aut, aperiam
-            eos molestias, vel blanditiis soluta repellendus. Quibusdam
-            molestias similique quasi quas obcaecati.
-          </p>
+          <h1 className="text-5xl font-bold">We are happy to see You again!</h1>
+          <p className="py-6">Pleas Login here below </p>
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -52,7 +47,10 @@ export const Login = () => {
                   required
                 />
                 <p className="text-base mt-2">
-                  You dont have an account? <Link to="/register">Register</Link>
+                  You dont have an account?{" "}
+                  <Link className="text-primary" to="/register">
+                    Register
+                  </Link>
                 </p>
               </div>
               <div className="form-control mt-6">

@@ -4,18 +4,18 @@ import { ContactList } from "./components/ContactList/ContactList";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectFilteredName,
+  // selectFilteredName,
   selectContacts,
   selectLoading,
   selectError,
-} from "./redux/contactsSlice";
-import { fetchContactsThunk } from "./redux/contactsOps";
+} from "../../redux/contacts/contactsSlice";
+import { fetchContactsThunk } from "../../redux/contacts/contactsOps.js";
 import { Loader } from "./components/Loader/Loader";
 
 export const ContactsApp = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectFilteredName);
+  // const filter = useSelector(selectFilteredName);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
@@ -29,8 +29,9 @@ export const ContactsApp = () => {
       <ContactForm />
       <SearchBox />
       {loading && <Loader />}
-      {contacts.length > 0 && !error ? (
-        <ContactList filteredContacts={filter} />
+
+      {contacts?.length > 0 && !error ? (
+        <ContactList />
       ) : (
         <span> OOps, No searched contact/s :( </span>
       )}

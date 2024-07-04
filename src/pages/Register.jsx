@@ -15,17 +15,13 @@ export const Register = () => {
     password: "",
   };
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero bg-gray-400 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Register now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+          <h1 className="text-5xl font-bold"> We are happy to see You!</h1>
+          <p className="py-6">You can create account below</p>
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div className="card bg-base-100  w-full max-w-sm shrink-0 shadow-2xl">
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <Form className="card-body">
               <div className="form-control">
@@ -63,7 +59,10 @@ export const Register = () => {
                   required
                 />
                 <p className="text-base mt-2">
-                  You already have an account? <Link to="/login">Login</Link>
+                  You already have an account?{" "}
+                  <Link className="text-primary" to="/login">
+                    Login
+                  </Link>
                 </p>
               </div>
               <div className="form-control mt-6">

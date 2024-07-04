@@ -6,23 +6,24 @@ import s from ".//ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContactThunk } from "../../redux/contactsOps";
 
+const initialValues = {
+  name: "",
+  number: "",
+};
 export const ContactForm = () => {
-  const initialValues = {
-    name: "",
-    number: "",
-  };
-
   const dispatch = useDispatch();
 
   const nameFieldId = useId();
   const numberFieldId = useId();
 
   const handleSubmit = (values, action) => {
+    // dispatch(addContactThunk(values));
     const contact = addContactThunk({
       name: values.name,
       number: values.number,
     });
     dispatch(contact);
+
     action.resetForm();
   };
 
