@@ -1,8 +1,24 @@
-# React + Vite
+Login and registet forms:
+![image](https://github.com/user-attachments/assets/e51f71c1-460f-4dff-ad12-4f2a841ca9a2)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="710" alt="Screenshot 2024-07-28 210545" src="https://github.com/user-attachments/assets/274501e4-c6d3-4cc1-bb5c-7626a70edcb7">
 
-Currently, two official plugins are available:
+Home page:
+![image](https://github.com/user-attachments/assets/91b97120-6268-4fd7-a275-81cb0fb19ad1)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+Contacts page where You can add new one, delete and  find by query:
+![image](https://github.com/user-attachments/assets/a16e8d47-4903-478a-931b-4233bc61a3b2)
+
+Knowleges that were used: 
+-React
+-HTML and CSS
+-Taillwind
+-Redux Tolkit
+-react router dom
+
+
+
+
+
+
